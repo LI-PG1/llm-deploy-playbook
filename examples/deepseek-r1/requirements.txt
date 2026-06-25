@@ -1,0 +1,11 @@
+numpy>=1.26.0
+torch>=2.5.0
+transformers>=5.9.0
+huggingface-hub>=0.31.0
+tokenizers>=0.22.0,<=0.23.0
+gradio>=4.40.0
+safetensors>=0.4.3
+sentencepiece>=0.2.0
+tqdm>=4.65.0
+requests>=2.31.0
+accelerate>=1.0
