@@ -1,0 +1,16 @@
+numpy==1.26.4
+torch==2.5.1
+torchvision==0.20.1
+transformers==5.9.0
+accelerate==1.13.0
+huggingface-hub==1.18.0
+tokenizers==0.22.2
+regex>=2025.10.22
+gradio>=4.40.0
+pillow>=10.0.0
+einops>=0.8.0
+safetensors==0.8.0
+sentencepiece>=0.2.0
+tiktoken>=0.7.0
+tqdm>=4.65.0
+requests>=2.31.0

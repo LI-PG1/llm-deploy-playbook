@@ -1,0 +1,7 @@
+transformers>=4.39.2
+torch>=2.0.0
+gradio>=4.0.0
+huggingface-hub>=0.20.0
+numpy
+safetensors
+einops
