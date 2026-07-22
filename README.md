@@ -24,7 +24,7 @@
 
 **个人主页**：[趋动云 · LinusLI](https://open.virtaicloud.com/web/profile/154373/publish)
 
-**代表性案例**：
+**上线项目**：
 
 - [nvidia/LocateAnything-3B](https://mp.weixin.qq.com/s/7jOzvru2F1FDCoU6n14aVg) — 视觉定位推理服务。NVIDIA Parallel Box Decoding，混合推理模式
 - [google/medgemma-1.5-4b-it](https://mp.weixin.qq.com/s/0sf9lhhWRyp8MidFXCIzzg) — 医学视觉语言模型推理服务。Google 医疗 VLM
