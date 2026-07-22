@@ -19,6 +19,17 @@
 
 每个示例包含：app.py / Dockerfile / requirements.txt / start.sh / download_model.sh / USAGE.md
 
+
+## 社区项目
+
+**个人主页**：[趋动云 · LinusLI](https://open.virtaicloud.com/web/profile/154373/publish)
+
+**代表性案例**：
+
+- [nvidia/LocateAnything-3B](https://mp.weixin.qq.com/s/7jOzvru2F1FDCoU6n14aVg) — 视觉定位推理服务。NVIDIA Parallel Box Decoding，单卡部署
+- [Qwen/Qwen-AgentWorld-35B-A3B](https://open.virtaicloud.com/web/project/detail/721979639312384000) — Agent 智能体推理服务。MoE 35B/3B 激活，单卡可运行
+- [baidu/Unlimited-OCR](https://open.virtaicloud.com/web/project/detail/721921646039367680) — 端到端 OCR 服务。多页 PDF 一次性解析，R-SWA 恒定 KV 缓存
+
 ## 相关仓库
 
 - [llm-model-optimization](https://github.com/LI-PG1/llm-model-optimization) — 量化基准测试和微调模板
