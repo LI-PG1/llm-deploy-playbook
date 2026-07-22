@@ -1,0 +1,7 @@
+2026-07-14 14:23:45 [INFO] Starting model load from /data/models/phi4-mini
+2026-07-14 14:23:47 [INFO] Tokenizer loaded (vocab_size=200064)
+2026-07-14 14:24:05 [INFO] Model loaded (BF16, 3.8B params)
+2026-07-14 14:24:06 [WARNING] GPU memory usage: 7.8/24.0 GB
+2026-07-14 14:24:06 [INFO] Starting Gradio server on port 7860
+2026-07-14 14:24:30 [INFO] Request: "5G套餐 199元档包含多少流量？"
+2026-07-14 14:24:32 [INFO] Response generated (112 tokens, 1.8s)
