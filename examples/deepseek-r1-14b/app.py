@@ -25,7 +25,6 @@ MODEL = None
 TOKENIZER = None
 MODEL_LOCK = Lock()
 
-
 def load_model():
     global MODEL, TOKENIZER
     if MODEL is not None:
@@ -57,7 +56,6 @@ def load_model():
 
         return MODEL, TOKENIZER
 
-
 def split_thinking(text):
     think_patterns = [
         r"^(.*?) response\s*(.*)",
@@ -73,7 +71,6 @@ def split_thinking(text):
                 return thinking, answer
 
     return "", text
-
 
 def generate_response(messages, max_new_tokens=4096, temperature=0.6, top_p=0.95):
     model, tokenizer = load_model()
@@ -110,7 +107,6 @@ def generate_response(messages, max_new_tokens=4096, temperature=0.6, top_p=0.95
     print(f"[INFER] Output tokens: {len(output_tokens)}, time: {elapsed:.1f}s, speed: {tokens_per_sec:.1f} tok/s")
 
     return response
-
 
 class DeepSeekChat:
     def __init__(self):
@@ -169,9 +165,7 @@ class DeepSeekChat:
 
         return self.conversation
 
-
 chat_instance = DeepSeekChat()
-
 
 with gr.Blocks(title="DeepSeek-R1-Distill-Qwen-14B Chat", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""

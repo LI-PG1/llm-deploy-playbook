@@ -30,7 +30,6 @@ TOKENIZER = None
 MODEL_LOCK = Lock()
 MODEL_LOADED = Event()
 
-
 # ==================== 保活线程 ====================
 
 def _keepalive_thread():
@@ -42,7 +41,6 @@ def _keepalive_thread():
         except Exception:
             pass
         MODEL_LOADED.wait(300)
-
 
 # ==================== 模型加载 ====================
 
@@ -61,7 +59,6 @@ def init_vllm():
     elapsed = time.time() - t0
     print(f"[VLLM] Model loaded in {elapsed:.1f}s")
     return llm
-
 
 def load_model():
     global MODEL, TOKENIZER
@@ -117,7 +114,6 @@ def load_model():
         MODEL_LOADED.set()
         return MODEL, TOKENIZER
 
-
 # ==================== vLLM 推理 ====================
 
 def _generate_vllm(llm, tokenizer, messages, max_new_tokens, temperature, top_p):
@@ -139,7 +135,6 @@ def _generate_vllm(llm, tokenizer, messages, max_new_tokens, temperature, top_p)
 
     print(f"[VLLM] Output tokens: {output_tokens}, time: {elapsed:.1f}s, speed: {output_tokens/elapsed:.1f} tok/s")
     return response
-
 
 # ==================== Transformers 推理 ====================
 
@@ -180,7 +175,6 @@ def _generate_transformers(model, tokenizer, messages, max_new_tokens, temperatu
     print(f"[TRANSFORMERS] Output tokens: {len(output_tokens)}, time: {elapsed:.1f}s, speed: {len(output_tokens)/elapsed:.1f} tok/s")
     return response
 
-
 # ==================== 统一生成入口 ====================
 
 def generate_response(messages, max_new_tokens=2048, temperature=0.7, top_p=0.8):
@@ -190,7 +184,6 @@ def generate_response(messages, max_new_tokens=2048, temperature=0.7, top_p=0.8)
         return _generate_vllm(model, tokenizer, messages, max_new_tokens, temperature, top_p)
     else:
         return _generate_transformers(model, tokenizer, messages, max_new_tokens, temperature, top_p)
-
 
 # ==================== 聊天类 ====================
 
@@ -238,7 +231,6 @@ class Qwen35Chat:
             history.append({"role": "assistant", "content": error_msg})
 
         return history, history
-
 
 # ==================== 构建 Gradio UI ====================
 
@@ -329,7 +321,6 @@ def create_demo():
         )
 
     return demo
-
 
 # ==================== 启动入口 ====================
 

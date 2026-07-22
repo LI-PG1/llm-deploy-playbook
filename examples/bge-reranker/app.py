@@ -13,7 +13,6 @@ MODEL = None
 TOKENIZER = None
 MODEL_LOCK = Lock()
 
-
 def load_model():
     global MODEL, TOKENIZER
     if MODEL is not None:
@@ -44,7 +43,6 @@ def load_model():
         print(f"[LOAD] Device: {next(MODEL.parameters()).device}")
 
         return MODEL, TOKENIZER
-
 
 def rerank(query, documents, top_k=None):
     model, tokenizer = load_model()
@@ -88,7 +86,6 @@ def rerank(query, documents, top_k=None):
 
     return "\n".join(lines)
 
-
 def get_model_info():
     try:
         model, tokenizer = load_model()
@@ -97,7 +94,6 @@ def get_model_info():
         return f"Model loaded on {device}\nParameters: {params:.1f}M\nTokenizer vocab size: {tokenizer.vocab_size}"
     except Exception as e:
         return f"Model not loaded yet: {e}"
-
 
 with gr.Blocks(title="BGE Reranker v2-m3", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""

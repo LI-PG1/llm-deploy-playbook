@@ -13,12 +13,10 @@ import torch
 from PIL import Image, ImageDraw
 from transformers import AutoModel, AutoTokenizer, AutoProcessor
 
-# ── Config ──────────────────────────────────────────────────────────
 MODEL_PATH = os.environ.get("MODEL_PATH", "/gemini/pretrain/LocateAnything-3B-model")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 DTYPE = torch.bfloat16 if DEVICE == "cuda" else torch.float32
 
-# ── Worker (from official README) ───────────────────────────────────
 class LocateAnythingWorker:
     """Stateful worker — loads model once, serves perception queries."""
 
@@ -130,11 +128,8 @@ class LocateAnythingWorker:
             })
         return points
 
-
-# ── Global state ────────────────────────────────────────────────────
 worker: LocateAnythingWorker | None = None
 MODEL_LOADED = threading.Event()
-
 
 def load_model_background():
     """Background thread: loads model, sets MODEL_LOADED flag."""
@@ -144,8 +139,6 @@ def load_model_background():
     MODEL_LOADED.set()
     print(f"[background] Model loaded! Device: {worker.device}", flush=True)
 
-
-# ── Inference ───────────────────────────────────────────────────────
 def run_inference(image, prompt_text, mode, max_tokens, temperature):
     if worker is None:
         return image, "Model not loaded yet, please wait..."
@@ -183,8 +176,6 @@ def run_inference(image, prompt_text, mode, max_tokens, temperature):
 
     return draw, raw.strip()
 
-
-# ── Gradio UI ───────────────────────────────────────────────────────
 CSS = """
 .gr-box {border-radius: 8px;}
 h1 {text-align: center;}
@@ -240,8 +231,6 @@ with gr.Blocks(title="LocateAnything-3B", css=CSS) as demo:
         f"> 加载状态: {'✅ 已加载' if MODEL_LOADED.is_set() else '⏳ 加载中...'}"
     )
 
-
-# ── Main ────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     # Start model loading in background (UI starts immediately for health check)
     threading.Thread(target=load_model_background, daemon=True).start()

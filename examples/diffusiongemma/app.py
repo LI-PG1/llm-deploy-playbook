@@ -25,7 +25,6 @@ MODEL = None
 PROCESSOR = None
 MODEL_LOCK = Lock()
 
-
 def find_model_path() -> str:
     """自动搜索模型目录"""
     for p in _SEARCH_CANDIDATES:
@@ -36,7 +35,6 @@ def find_model_path() -> str:
     # fallback
     print(f"[FIND] Using default: {MODEL_PATH}")
     return MODEL_PATH
-
 
 def load_model():
     global MODEL, PROCESSOR
@@ -89,7 +87,6 @@ def load_model():
 
         return MODEL, PROCESSOR
 
-
 def clean_output(text: str) -> str:
     """清理 DiffusionGemma 输出：移除标签和填充 token"""
     import re
@@ -100,7 +97,6 @@ def clean_output(text: str) -> str:
     # 清理多余空白
     text = re.sub(r'\s+', ' ', text).strip()
     return text
-
 
 def chat_fn(image, text, history, system_prompt, enable_thinking, max_new_tokens, temperature):
     """
@@ -200,12 +196,9 @@ def chat_fn(image, text, history, system_prompt, enable_thinking, max_new_tokens
 
     return history
 
-
 def clear_chat():
     return []
 
-
-# ── Build UI ──
 _TITLE = "DiffusionGemma 26B-A4B-it — 扩散视觉语言对话"
 _DESC = """
 **Google DeepMind** · [HuggingFace](https://huggingface.co/google/diffusiongemma-26B-A4B-it) · [Blog](https://blog.google/innovation-and-ai/technology/developers-tools/diffusion-gemma-faster-text-generation/)
@@ -283,7 +276,6 @@ with gr.Blocks(title=_TITLE) as demo:
     ).then(lambda: "", None, text_input).then(lambda: None, None, image_input)
 
     clear_btn.click(fn=clear_chat, outputs=chatbot)
-
 
 if __name__ == "__main__":
     print("=" * 60)

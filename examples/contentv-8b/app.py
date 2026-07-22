@@ -22,7 +22,6 @@ DEFAULT_NEGATIVE = "overexposed, low quality, deformation, a poor composition, b
 pipe = None
 MODEL_LOCK = threading.Lock()
 
-
 def load_model():
     global pipe
     if pipe is not None:
@@ -67,7 +66,6 @@ def load_model():
         t1 = time.time()
         print(f"[LOAD] Model loaded in {t1 - t0:.1f}s")
         return pipe
-
 
 def generate_video(
     prompt,
@@ -127,7 +125,6 @@ def generate_video(
         traceback.print_exc()
         raise gr.Error(f"Generation failed: {e}")
 
-
 def warmup():
     """Warm up the model at startup."""
     if not os.environ.get("SKIP_WARMUP"):
@@ -136,7 +133,6 @@ def warmup():
             load_model()
         except Exception as e:
             print(f"[WARMUP] Preload failed (will retry on first request): {e}")
-
 
 # ---- Gradio UI ----
 

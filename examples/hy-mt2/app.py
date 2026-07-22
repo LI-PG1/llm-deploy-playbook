@@ -40,7 +40,6 @@ ENGLISH_NAMES = {
     "粤语": "Cantonese",
 }
 
-
 def load_model():
     global MODEL, TOKENIZER
     if MODEL is not None:
@@ -75,7 +74,6 @@ def load_model():
 
         return MODEL, TOKENIZER
 
-
 def build_prompt(source_lang, target_lang, source_text):
     use_english = source_lang in ENGLISH_NAMES and target_lang in ENGLISH_NAMES
     if use_english:
@@ -84,7 +82,6 @@ def build_prompt(source_lang, target_lang, source_text):
         return f"Translate the following text into {tgt}. Note that you should only output the translated result without any additional explanation:\n\n{source_text}"
     else:
         return f"将以下文本翻译成{target_lang}，注意只需要输出翻译后的结果，不要额外解释：\n\n{source_text}"
-
 
 def translate(source_lang, target_lang, source_text, temperature, top_p, top_k,
               repetition_penalty, max_tokens):
@@ -134,10 +131,8 @@ def translate(source_lang, target_lang, source_text, temperature, top_p, top_k,
         print(traceback.format_exc())
         return "ERROR", f"❌ {type(e).__name__}: {e}"
 
-
 def swap_languages(source_lang, target_lang):
     return target_lang, source_lang
-
 
 with gr.Blocks(title="Hy-MT2-7B Translator", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""

@@ -37,7 +37,6 @@ DEFAULT_TOP_K = 20
 DEFAULT_REPETITION_PENALTY = 1.05
 DEFAULT_MAX_NEW_TOKENS = 65536
 
-
 def load_model():
     global MODEL, TOKENIZER
     if MODEL is not None:
@@ -70,7 +69,6 @@ def load_model():
         print(f"[LOAD] Device: {MODEL.device}")
 
         return MODEL, TOKENIZER
-
 
 def generate_response(messages, max_new_tokens=DEFAULT_MAX_NEW_TOKENS,
                       temperature=DEFAULT_TEMPERATURE, top_p=DEFAULT_TOP_P,
@@ -121,7 +119,6 @@ def generate_response(messages, max_new_tokens=DEFAULT_MAX_NEW_TOKENS,
           f"time: {elapsed:.1f}s, speed: {tok_speed:.1f} tok/s")
 
     return response, len(output_tokens), elapsed
-
 
 # ===== Gradio Chat Interface =====
 def chat_fn(message, history):
@@ -190,7 +187,6 @@ def chat_fn(message, history):
           f"time: {elapsed:.1f}s, speed: {tok_speed:.1f} tok/s")
 
     return response
-
 
 # ===== Build UI =====
 CSS = """
@@ -297,7 +293,6 @@ with gr.Blocks(title="Qwen3-Coder-30B-A3B-Instruct") as demo:
         [msg, chatbot],
     )
     clear_btn.click(clear_chat, None, [chatbot, chat_history])
-
 
 if __name__ == "__main__":
     # 后台预加载模型

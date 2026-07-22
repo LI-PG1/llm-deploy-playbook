@@ -41,7 +41,6 @@ model = None
 tokenizer = None
 model_lock = Lock()
 
-
 def load_model():
     global model, tokenizer
 
@@ -72,7 +71,6 @@ def load_model():
         print(f"[完成] 耗时 {elapsed:.1f}s，显存 {gpu_mem:.1f}GB，device: {model.device}")
         return model, tokenizer
 
-
 # ===================== CoT 推理 / 回答分离 =====================
 
 def split_thinking(text):
@@ -86,7 +84,6 @@ def split_thinking(text):
         if match and match.group(1).strip() and match.group(2).strip():
             return match.group(1).strip(), match.group(2).strip()
     return "", text
-
 
 # ===================== 推理 =====================
 
@@ -122,7 +119,6 @@ def generate_response(messages, max_new_tokens=4096, temperature=0.6, top_p=0.95
     print(f"[推理] 输出 {len(output_tokens)} tokens，耗时 {elapsed:.1f}s，速度 {tok_speed:.1f} tok/s")
 
     return tokenizer.decode(output_tokens, skip_special_tokens=True)
-
 
 # ===================== Gradio 界面 =====================
 
@@ -168,7 +164,6 @@ class ChatBot:
             self.conversation.append((user_message, f"Error: {type(e).__name__}: {e}"))
 
         return self.conversation
-
 
 bot = ChatBot()
 

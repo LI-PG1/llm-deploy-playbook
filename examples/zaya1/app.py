@@ -55,7 +55,6 @@ def gpu_info():
 dlog("START")
 dlog(gpu_info())
 
-
 def load_model():
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -80,7 +79,6 @@ def load_model():
         dlog(f"load_model_ERROR: {e}\n{traceback.format_exc()}")
         raise
 
-
 dlog("INIT_load_start")
 try:
     model, tokenizer = load_model()
@@ -92,7 +90,6 @@ except Exception as e:
 dlog("INIT_gradio_start")
 dlog(gpu_info())
 
-
 def chat_fn(message, history):
     if not message.strip():
         return history, history
@@ -103,7 +100,6 @@ def chat_fn(message, history):
     reply = tokenizer.decode(out[0][input_len:], skip_special_tokens=True)
     history.append((message, reply.strip() if reply.strip() else "(empty)"))
     return history, history
-
 
 with gr.Blocks(title="ZAYA1-8B", theme=gr.themes.Soft()) as demo:
     gr.Markdown("# ZAYA1-8B MoE")

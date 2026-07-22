@@ -58,14 +58,12 @@ OUTPUT_DIR = "/tmp/output"
 
 tts = None
 
-
 def get_tts():
     global tts
     if tts is None:
         os.makedirs(OUTPUT_DIR, exist_ok=True)
         tts = TTS(auto_download=True)
     return tts
-
 
 def get_available_voices():
     try:
@@ -82,7 +80,6 @@ def get_available_voices():
         return voices
     except Exception:
         return ["M1", "F1"]
-
 
 def synthesize_speech(text, language_display, voice_name, expression):
     if not text or not text.strip():
@@ -106,7 +103,6 @@ def synthesize_speech(text, language_display, voice_name, expression):
     except Exception as e:
         traceback.print_exc()
         return None, f"Error: {str(e)}"
-
 
 with gr.Blocks(title="Supertone-3 TTS", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""

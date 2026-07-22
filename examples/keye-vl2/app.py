@@ -19,7 +19,6 @@ MODEL = None
 PROCESSOR = None
 MODEL_LOCK = Lock()
 
-
 def load_model():
     global MODEL, PROCESSOR
     if MODEL is not None:
@@ -49,7 +48,6 @@ def load_model():
 
         print("[INFO] Model loaded, device_map:", MODEL.hf_device_map)
         return MODEL, PROCESSOR
-
 
 def chat_with_image(image, text, history):
     if image is None and not text:
@@ -103,10 +101,8 @@ def chat_with_image(image, text, history):
     history.append({"role": "assistant", "content": response})
     return history
 
-
 def clear_chat():
     return []
-
 
 with gr.Blocks(title="Keye-VL-2.0 多模态对话") as demo:
     gr.Markdown("# Keye-VL-2.0-30B-A3B 多模态视觉对话")
@@ -139,7 +135,6 @@ with gr.Blocks(title="Keye-VL-2.0 多模态对话") as demo:
     ).then(lambda: "", None, text_input)
 
     clear_btn.click(fn=clear_chat, outputs=chatbot)
-
 
 if __name__ == "__main__":
     demo.queue(max_size=10).launch(

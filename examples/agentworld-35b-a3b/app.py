@@ -68,17 +68,14 @@ DOMAIN_PROMPTS = {
     ),
 }
 
-
 def get_system_prompt(domain_key):
     """Return system prompt for the selected domain."""
     return DOMAIN_PROMPTS.get(domain_key, DOMAIN_PROMPTS["Terminal"])
-
 
 # ===== Model Loading =====
 MODEL = None
 TOKENIZER = None
 MODEL_LOCK = Lock()
-
 
 def load_model():
     global MODEL, TOKENIZER
@@ -113,7 +110,6 @@ def load_model():
         print(f"[LOAD] Device: {MODEL.device}")
 
         return MODEL, TOKENIZER
-
 
 def generate_response(messages, max_new_tokens=4096, temperature=0.6, top_p=0.95, top_k=20):
     """
@@ -177,7 +173,6 @@ def generate_response(messages, max_new_tokens=4096, temperature=0.6, top_p=0.95
     print(f"[INFER] Output tokens: {len(output_tokens)}, time: {elapsed:.1f}s, speed: {tok_per_sec:.1f} tok/s")
     return response, len(output_tokens), round(elapsed, 1), round(tok_per_sec, 1)
 
-
 # ===== Gradio Chat Interface =====
 class AgentWorldChat:
     def __init__(self):
@@ -234,7 +229,6 @@ class AgentWorldChat:
             stats = "Error occurred"
 
         return history, history, stats, "", "", ""
-
 
 chat_instance = AgentWorldChat()
 

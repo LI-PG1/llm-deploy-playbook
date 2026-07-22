@@ -7,7 +7,6 @@ import urllib.request
 import urllib.error
 import socket
 
-
 COMFYUI_URL = "http://127.0.0.1:8188"
 
 # ================================================================
@@ -18,7 +17,6 @@ GUI_ONLY_TYPES = {"Reroute", "Note", "PrimitiveLinkFilter", "GroupNode", "GroupN
 
 _OBJECT_INFO_CACHE = None
 
-
 def _get_object_info():
     """从 ComfyUI 获取所有节点的 input 定义（含默认值）。只调一次，缓存结果。"""
     global _OBJECT_INFO_CACHE
@@ -27,7 +25,6 @@ def _get_object_info():
         with urllib.request.urlopen(url, timeout=10) as resp:
             _OBJECT_INFO_CACHE = json.loads(resp.read().decode("utf-8"))
     return _OBJECT_INFO_CACHE
-
 
 def workflow_to_api(workflow):
     """将 ComfyUI GUI workflow JSON 转为 API prompt 格式。"""
@@ -147,7 +144,6 @@ def workflow_to_api(workflow):
 
     return prompt
 
-
 # ================================================================
 #  workflow loading (local JSON only)
 # ================================================================
@@ -163,17 +159,14 @@ def load_workflow_template(mode="t2v"):
     with open(local_path, "r") as f:
         return json.load(f)
 
-
 def find_node_by_type(workflow, node_type):
     for node in workflow["nodes"]:
         if node["type"] == node_type:
             return node
     return None
 
-
 def find_nodes_by_type(workflow, node_type):
     return [n for n in workflow["nodes"] if n["type"] == node_type]
-
 
 # ================================================================
 #  ComfyUI API client
@@ -194,7 +187,6 @@ def queue_prompt(prompt_workflow):
     except urllib.error.URLError as e:
         raise RuntimeError(f"ComfyUI not reachable: {e}")
 
-
 def get_history(prompt_id):
     try:
         url = f"{COMFYUI_URL}/history/{prompt_id}"
@@ -202,7 +194,6 @@ def get_history(prompt_id):
             return json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError:
         return None
-
 
 def wait_for_completion(prompt_id, timeout=300):
     start = time.time()
@@ -212,7 +203,6 @@ def wait_for_completion(prompt_id, timeout=300):
             return history[prompt_id]
         time.sleep(2)
     raise TimeoutError("Generation timed out")
-
 
 def get_output_files(history_entry):
     files = []
@@ -229,7 +219,6 @@ def get_output_files(history_entry):
                         path = f"{COMFYUI_URL}/view?filename={filename}&type=output"
                     files.append((filename, path))
     return files
-
 
 # ================================================================
 #  Sulphur-2 inference engine
@@ -320,16 +309,13 @@ class Sulphur2Inference:
         best = sorted(video_files, key=lambda x: x[0])[-1]
         return best[1], None
 
-
 inference = None
-
 
 def get_inference():
     global inference
     if inference is None:
         inference = Sulphur2Inference()
     return inference
-
 
 def generate_video_fn(prompt, negative_prompt, width, height, num_frames,
                       fps, steps, cfg_scale, seed, input_image):
@@ -353,7 +339,6 @@ def generate_video_fn(prompt, negative_prompt, width, height, num_frames,
         return video_url, "Video generated successfully!"
     except Exception as e:
         return None, f"Error: {str(e)}"
-
 
 with gr.Blocks(title="Sulphur-2-base Video Generation", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""# Sulphur-2-base Video Generator\nBased on LTX Video 2.3 architecture. Supports T2V and I2V.""")

@@ -20,7 +20,6 @@ MODEL = None
 TOKENIZER = None
 MODEL_LOCK = Lock()
 
-
 def last_token_pool(last_hidden_states, attention_mask):
     left_padding = (attention_mask[:, -1].sum() == attention_mask.shape[0])
     if left_padding:
@@ -30,10 +29,8 @@ def last_token_pool(last_hidden_states, attention_mask):
         batch_size = last_hidden_states.shape[0]
         return last_hidden_states[torch.arange(batch_size, device=last_hidden_states.device), sequence_lengths]
 
-
 def get_detailed_instruct(task_description: str, query: str) -> str:
     return f'Instruct: {task_description}\nQuery: {query}'
-
 
 def load_model():
     global MODEL, TOKENIZER
@@ -67,7 +64,6 @@ def load_model():
 
         return MODEL, TOKENIZER
 
-
 def encode_texts(texts, task_description=None, max_length=8192):
     model, tokenizer = load_model()
 
@@ -89,7 +85,6 @@ def encode_texts(texts, task_description=None, max_length=8192):
         embeddings = F.normalize(embeddings, p=2, dim=1)
 
     return embeddings.cpu().float().numpy()
-
 
 def embed_single(text, task_description):
     if not text.strip():
@@ -116,7 +111,6 @@ def embed_single(text, task_description):
     except Exception as e:
         return f"Error: {e}", ""
 
-
 def compute_similarity(text1, text2, query_task):
     if not text1.strip() or not text2.strip():
         return "Please enter both texts."
@@ -142,7 +136,6 @@ def compute_similarity(text1, text2, query_task):
         return f"Cosine Similarity: {sim:.6f} ({percentage:.1f}%)\nSimilarity Level: {level}\nTime: {elapsed:.2f}s"
     except Exception as e:
         return f"Error: {e}"
-
 
 def search_documents(query, documents_text, task_description, top_k):
     if not query.strip():
@@ -175,7 +168,6 @@ def search_documents(query, documents_text, task_description, top_k):
         return result
     except Exception as e:
         return f"Error: {e}"
-
 
 with gr.Blocks(title="gte-Qwen2-1.5B Embedding", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""

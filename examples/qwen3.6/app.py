@@ -22,7 +22,6 @@ MODEL = None
 TOKENIZER = None
 MODEL_LOCK = Lock()
 
-
 def load_model():
     global MODEL, TOKENIZER
     if MODEL is not None:
@@ -55,7 +54,6 @@ def load_model():
         print(f"[LOAD] Device: cuda")
 
         return MODEL, TOKENIZER
-
 
 def generate_response(messages, max_new_tokens=2048, temperature=0.7, top_p=0.8, enable_thinking=True):
     model, tokenizer = load_model()
@@ -99,7 +97,6 @@ def generate_response(messages, max_new_tokens=2048, temperature=0.7, top_p=0.8,
 
     print(f"[INFER] Output tokens: {len(output_tokens)}, time: {elapsed:.1f}s, speed: {len(output_tokens)/elapsed:.1f} tok/s")
     return response
-
 
 class Qwen3Chat:
     def __init__(self):
@@ -151,9 +148,7 @@ class Qwen3Chat:
 
         return history, history
 
-
 chat_instance = Qwen3Chat()
-
 
 with gr.Blocks(title="Qwen3.6-35B-A3B Chat", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""

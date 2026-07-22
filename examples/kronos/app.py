@@ -19,7 +19,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 
-# ─── 路径配置 ─────────────────────────────────
 MODEL_BASE = "/gemini/pretrain/Kronos"
 TOKENIZER_PATH = os.path.join(MODEL_BASE, "Kronos-Tokenizer-base")
 SMALL_PATH = os.path.join(MODEL_BASE, "Kronos-small")
@@ -28,7 +27,6 @@ BASE_PATH = os.path.join(MODEL_BASE, "Kronos-base")
 # 模型代码路径（启动时下载 Kronos 仓库，用 Gitee 镜像）
 KRONOS_REPO = "https://gitee.com/persiacat/Kronos.git"
 KRONOS_CODE_DIR = "/tmp/kronos_code"
-
 
 def ensure_kronos_code():
     """克隆 Kronos GitHub 仓库获取模型代码"""
@@ -43,7 +41,6 @@ def ensure_kronos_code():
     sys.path.insert(0, KRONOS_CODE_DIR)
     print(f"[SETUP] Kronos code path added: {KRONOS_CODE_DIR}")
 
-
 def _load_local_model(model_class, model_dir):
     """从本地目录加载 Kronos 模型/分词器，完全绕过 huggingface_hub"""
     import safetensors.torch
@@ -55,7 +52,6 @@ def _load_local_model(model_class, model_dir):
     weights = safetensors.torch.load_file(weights_path, device="cpu")
     instance.load_state_dict(weights)
     return instance
-
 
 def load_models(model_size="small"):
     """加载分词器和模型（绕过 huggingface_hub）"""
@@ -82,7 +78,6 @@ def load_models(model_size="small"):
         max_context=512,
     )
     return predictor
-
 
 def parse_csv(file_obj):
     """解析上传的 CSV 文件"""
@@ -126,7 +121,6 @@ def parse_csv(file_obj):
 
     return x_df, timestamps, df[[c for c in df.columns if c not in extra_cols + ([time_col] if time_col else [])] + extra_cols + ([time_col] if time_col else [])]
 
-
 def generate_sample_data():
     """生成示例数据（模拟 BTC 价格）"""
     np.random.seed(42)
@@ -147,7 +141,6 @@ def generate_sample_data():
         "amount": np.random.uniform(5000000, 50000000, n),
     })
     return df
-
 
 def run_prediction(
     model_size, csv_file, use_sample,
@@ -258,8 +251,6 @@ def run_prediction(
         traceback.print_exc()
         return None, "", f"错误: {type(e).__name__}: {str(e)}"
 
-
-# ─── Gradio UI ─────────────────────────────────
 with gr.Blocks(
     title="Kronos 金融K线预测",
     theme=gr.themes.Soft(),
@@ -278,8 +269,7 @@ with gr.Blocks(
 
     with gr.Row():
         with gr.Column(scale=1):
-            # ─── 模型配置 ───
-            with gr.Group():
+                        with gr.Group():
                 gr.Markdown("### 模型配置")
                 model_selector = gr.Radio(
                     choices=[("Kronos-small (24.7M 参数, 快速)", "small"),
@@ -288,8 +278,7 @@ with gr.Blocks(
                     label="模型",
                 )
 
-            # ─── 数据输入 ───
-            with gr.Group():
+                        with gr.Group():
                 gr.Markdown("### 数据输入")
                 use_sample_cb = gr.Checkbox(
                     value=True,
@@ -312,8 +301,7 @@ with gr.Blocks(
                 - 时间列名支持: timestamp, time, date, datetime
                 """)
 
-            # ─── 预测参数 ───
-            with gr.Group():
+                        with gr.Group():
                 gr.Markdown("### 预测参数")
                 lookback_slider = gr.Slider(
                     50, 512, 400, step=10,
@@ -344,14 +332,12 @@ with gr.Blocks(
             predict_btn = gr.Button("🚀 开始预测", variant="primary", size="lg")
 
         with gr.Column(scale=2):
-            # ─── 输出 ───
-            status_text = gr.Markdown("### 就绪，配置参数后点击「开始预测」")
+                        status_text = gr.Markdown("### 就绪，配置参数后点击「开始预测」")
             plot_output = gr.Plot(label="预测图表")
             with gr.Accordion("预测数据表格 (前20行)", open=False):
                 table_output = gr.HTML()
 
-    # ─── 事件 ───
-    predict_btn.click(
+        predict_btn.click(
         fn=run_prediction,
         inputs=[
             model_selector, csv_upload, use_sample_cb,
@@ -360,7 +346,6 @@ with gr.Blocks(
         ],
         outputs=[plot_output, table_output, status_text],
     )
-
 
 if __name__ == "__main__":
     demo.launch(server_name="0.0.0.0", server_port=7860, share=False)

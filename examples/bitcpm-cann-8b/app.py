@@ -11,7 +11,6 @@ MODEL = None
 TOKENIZER = None
 MODEL_LOCK = Lock()
 
-
 def load_model():
     global MODEL, TOKENIZER
     if MODEL is not None:
@@ -34,7 +33,6 @@ def load_model():
         print(f"[INFO] Model loaded", flush=True)
         return MODEL, TOKENIZER
 
-
 def generate_response(prompt):
     """Benchmark 测试接口 — 接收 prompt 返回生成的文本"""
     model, tokenizer = load_model()
@@ -43,7 +41,6 @@ def generate_response(prompt):
         temperature=0.7, top_p=0.7, max_new_tokens=2048,
     )
     return responds
-
 
 def chat(message, history):
     if not message or not message.strip():
@@ -64,10 +61,8 @@ def chat(message, history):
         history.append((message, f"Error: {str(e)}"))
         return "", history
 
-
 def clear_chat():
     return [], ""
-
 
 with gr.Blocks(title="BitCPM-CANN-8B") as demo:
     gr.Markdown("""

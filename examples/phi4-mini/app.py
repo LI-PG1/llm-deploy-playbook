@@ -16,7 +16,6 @@ MODEL = None
 TOKENIZER = None
 MODEL_LOCK = Lock()
 
-
 def load_model():
     global MODEL, TOKENIZER
     if MODEL is not None:
@@ -47,7 +46,6 @@ def load_model():
         print(f"[LOAD] Device: cuda")
 
         return MODEL, TOKENIZER
-
 
 def generate_response(messages, max_new_tokens=2048, temperature=0.7, top_p=0.8):
     model, tokenizer = load_model()
@@ -90,7 +88,6 @@ def generate_response(messages, max_new_tokens=2048, temperature=0.7, top_p=0.8)
 
     print(f"[INFER] Output tokens: {len(output_tokens)}, time: {elapsed:.1f}s, speed: {len(output_tokens)/elapsed:.1f} tok/s")
     return response
-
 
 class Phi4Chat:
     def __init__(self):
@@ -143,9 +140,7 @@ class Phi4Chat:
 
         return history, history
 
-
 chat_instance = Phi4Chat()
-
 
 with gr.Blocks(title="Phi-4-mini-instruct Chat", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""
