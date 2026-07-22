@@ -24,11 +24,11 @@
 
 **个人主页**：[趋动云 · LinusLI](https://open.virtaicloud.com/web/profile/154373/publish)
 
-**上线项目**：
+**项目展示**：
 
 - [nvidia/LocateAnything-3B](https://mp.weixin.qq.com/s/7jOzvru2F1FDCoU6n14aVg) — 视觉定位推理服务。NVIDIA Parallel Box Decoding，混合推理模式
-- [google/medgemma-1.5-4b-it](https://mp.weixin.qq.com/s/0sf9lhhWRyp8MidFXCIzzg) — 医学视觉语言模型推理服务。Google 医疗 VLM
-- [FaceFusion-3.6.1](https://mp.weixin.qq.com/s/zBHSifkSijxl4Yeq86y3og) — 人脸融合与增强推理服务。开源社区活跃项目
+- [baidu/Unlimited-OCR](https://open.virtaicloud.com/web/project/detail/727383845343547392) — 端到端 OCR 推理服务。多页 PDF 一次性解析，R-SWA 恒定 KV 缓存
+- [Google/Gemma-4-Unified-12B-it](https://open.virtaicloud.com/web/project/detail/732855980610412544) — 通用多模态推理服务。Gemma 4 统一架构，256K 上下文
 
 ## 相关仓库
 
