@@ -1,0 +1,12 @@
+torch==2.6.0
+torchvision==0.21.0
+transformers==5.12.1
+gradio==6.19.0
+accelerate==1.14.0
+safetensors==0.8.0
+tokenizers==0.22.2
+pillow==11.0.0
+einops
+numpy==1.26.4
+omegaconf
+pyyaml

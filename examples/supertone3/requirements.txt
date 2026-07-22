@@ -1,2 +1,8 @@
-supertonic
-gradio
+# Supertone-3 TTS 项目依赖
+# 基础框架（平台镜像已提供 torch>=2.1.0 torchvision torchaudio）
+
+# TTS 引擎（ONNX CPU推理）
+supertonic==0.2.1
+
+# Web UI
+gradio==4.44.1
