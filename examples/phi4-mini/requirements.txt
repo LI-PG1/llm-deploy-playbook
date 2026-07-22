@@ -1,0 +1,11 @@
+numpy>=1.26.0
+torch>=2.5.0
+transformers>=4.48.0
+huggingface-hub>=1.0
+gradio>=4.40.0
+pillow>=10.0.0
+einops>=0.8.0
+safetensors>=0.4.3
+sentencepiece>=0.2.0
+tqdm>=4.65.0
+requests>=2.31.0

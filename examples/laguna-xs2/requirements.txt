@@ -1,0 +1,8 @@
+transformers>=5.7.0
+torch>=2.1.0
+accelerate>=1.0
+safetensors>=0.4.3
+gradio>=4.0.0
+huggingface-hub>=0.31.0
+einops
+sentencepiece
