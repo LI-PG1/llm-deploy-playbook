@@ -1,0 +1,15 @@
+# DeepSeek-V4-Flash 部署依赖
+# 注意：大部分依赖已在基础镜像中预装
+
+# vLLM（基础镜像已预装 v0.24.0）
+# vllm>=0.20.0
+
+# Gradio Web UI（基础镜像已预装 6.20.0）
+# gradio>=4.40.0
+
+# OpenAI 客户端（连接 vLLM API）
+openai>=1.0.0
+
+# 额外工具
+tqdm>=4.65.0
+requests>=2.31.0
