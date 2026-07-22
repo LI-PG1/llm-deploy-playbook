@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.env
+*.safetensors
+*.bin
+*.pt
+*.pth
+logs/*.log
+data/chroma_db/
+data/results/
+*.egg-info/
+dist/
+build/
+.DS_Store
+.vscode/
+.idea/
