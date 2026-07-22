@@ -17,7 +17,7 @@
 | OCR | unlimited-ocr, kronos |
 | 其他 | zaya1, bitcpm-cann-8b |
 
-每个示例包含：app.py / Dockerfile / requirements.txt / start.sh / download_model.sh / USAGE.md
+每个示例至少包含 app.py、Dockerfile、requirements.txt、start.sh、download_model.sh、USAGE.md 等基础工程文件，并可能按模型特性额外附带 benchmark 脚本、配置文件或说明文档
 
 
 ## 社区项目
@@ -26,9 +26,9 @@
 
 **代表性案例**：
 
-- [nvidia/LocateAnything-3B](https://mp.weixin.qq.com/s/7jOzvru2F1FDCoU6n14aVg) — 视觉定位推理服务。NVIDIA Parallel Box Decoding，单卡部署
-- [Qwen/Qwen-AgentWorld-35B-A3B](https://open.virtaicloud.com/web/project/detail/721979639312384000) — Agent 智能体推理服务。MoE 35B/3B 激活，单卡可运行
-- [baidu/Unlimited-OCR](https://open.virtaicloud.com/web/project/detail/721921646039367680) — 端到端 OCR 服务。多页 PDF 一次性解析，R-SWA 恒定 KV 缓存
+- [nvidia/LocateAnything-3B](https://mp.weixin.qq.com/s/7jOzvru2F1FDCoU6n14aVg) — 视觉定位推理服务。NVIDIA Parallel Box Decoding，混合推理模式
+- [google/medgemma-1.5-4b-it](https://mp.weixin.qq.com/s/0sf9lhhWRyp8MidFXCIzzg) — 医学视觉语言模型推理服务。Google 医疗 VLM
+- [FaceFusion-3.6.1](https://mp.weixin.qq.com/s/zBHSifkSijxl4Yeq86y3og) — 人脸融合与增强推理服务。开源社区活跃项目
 
 ## 相关仓库
 
