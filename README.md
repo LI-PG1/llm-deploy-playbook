@@ -29,6 +29,7 @@
 - [nvidia/LocateAnything-3B](https://mp.weixin.qq.com/s/7jOzvru2F1FDCoU6n14aVg) — 视觉定位推理服务。NVIDIA Parallel Box Decoding，混合推理模式
 - [baidu/Unlimited-OCR](https://open.virtaicloud.com/web/project/detail/727383845343547392) — 端到端 OCR 推理服务。多页 PDF 一次性解析，R-SWA 恒定 KV 缓存
 - [Google/Gemma-4-Unified-12B-it](https://open.virtaicloud.com/web/project/detail/732855980610412544) — 通用多模态推理服务。Gemma 4 统一架构，256K 上下文
+- [Unlimited-OCR](https://open.virtaicloud.com/web/project/detail/727383845343547392) — OCR 推理服务
 
 ## 相关仓库
 
